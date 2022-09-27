@@ -13,6 +13,9 @@
 
 %% Language configuration
 \usepackage{polyglossia}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage[european]{circuitikz}
 \setdefaultlanguage[variant=swiss]{german}
 
 %% License configuration
@@ -28,15 +31,14 @@
 
 \course{Elektrotechnik}
 \module{ModAbk}
-\semester{Fr\"uhlingssemester 2020}
+\semester{Herbstsemester 2022}
 
-\authoremail{vorname.name@ost.ch}
-\author{\textsl{Vorname Name} -- \texttt{\theauthoremail}}
+\authoremail{joel.leirer@ost.ch}
+\author{\textsl{Joël Leirer} -- \texttt{\theauthoremail}}
 
 % did someone help you with this work?
 \contributors{
-  % I created this template, does that count?
-  Naoki Pross
+
   % do not forget to add yourself!
 }
 
@@ -63,6 +65,7 @@
 \section*{Lizenz}
 \doclicenseThis
 
+\clearpage
 \tableofcontents
 
 % actual content
@@ -70,10 +73,36 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-\section{Einf\"uhrung}
-\[
-  i\hbar \partial_t \left| \psi(t) \right\rangle 
-    = \hat{H} \left| \psi(t) \right\rangle
-\]
+\section{Arbeitspunktbestimmung}
+AC und DC Teile der Schaltung separat anschauen.
+\subsection{DC}
+\begin{itemize}
+  \item Grosssignalwiderstung ($\frac{U}{I}$) 
+  \item AC-Quellen "Abschalten", AC-Quellen mit DC Anteil durch DC-Quellen ersetzen
+  \item Kondensatoren entfernen (Unterbruch)
+  \item Spule Kurschliessen
+\end{itemize}
+\subsection{AC}
+\begin{itemize}
+  \item Kleinsignalwiderstand (Impedanz,$\frac{dU}{dI}$ )
+  \item DC-Quellen "Abschalten" (U --> Kurzschluss, I --> Unterbruch)
+  \item Nichtlineare Bauteil durch ihre Kleinsignal Ersatzschaltung ersetzen
+  \item Koppel- und Bypass-Kondensatoren kurzschliessen
+  \item Sperrdrosseln ("grossse" Induktivitäten) entfernen (Unterbruch)
+\end{itemize}
+
+\includegraphics[width = 5cm]{img/Tabelle Kleinsignal Ersatzschaltung.png}
+
+\section{OpAmp}
+\subsection{negative Rückkopplung}
+\subsubsection*{Nicht Invertierender Verstärker}
+\includegraphics[width = 5cm]{img/OpAmp/Verstaerker_nicht_invertierend.png}
+\subsubsection*{Invertierender Verstärker}
+\includegraphics{img/OpAmp/Verstaerker_invertierend.png}
+\subsubsection*{Summierender Verstärker}
+\includegraphics{img/OpAmp/Verstaerker_summierend.png}
+\subsubsection*{Buffer}
+\includegraphics{img/OpAmp/Buffer.png}
+
 
 \end{document}
