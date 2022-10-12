@@ -89,10 +89,10 @@ AC und DC Teile der Schaltung separat anschauen.
   \end{itemize}
   \subsection{AC}
   \begin{itemize}
-    \item Kleinsignalwiderstand (Impedanz,$\frac{dU}{dI}$ )
+    \item Kleinsignalwiderstand (Impedanz,$\frac{dU}{dI}$)
     \item DC-Quellen "Abschalten"
     \item Nichtlineare Bauteile durch ihre Kleinsignal Ersatzschaltung ersetzen
-    \item Kondensatoren kurzschliessen
+    \item Kondensatoren $\to$ Widerstände $X_{jc}= \frac{1}{2\pi f C}$
     \item Sperrdrosseln ("grossse" Induktivitäten) entfernen (Unterbruch)
   \end{itemize}
 \end{multicols}
@@ -102,95 +102,128 @@ AC und DC Teile der Schaltung separat anschauen.
 \section{OpAmp}
 \subsection{Schaltungen mit negativer Rückkopplung}
 \begingroup
-  \small
-  \begin{tabularx}{0.8\textwidth}{p{155pt}p{155pt}p{155pt}}
-    \textbf{Nicht Invertierender Verstärker}                                                          &
-    \textbf{Invertierender Verstärker}                                                                &
-    \textbf{Summierender Verstärker}                                                                    \\
-    \includegraphics[width = 3.5cm]{img/OpAmp/Verstaerker_nicht_invertierend.png}                     &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Verstaerker_invertierend.png}                           &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Verstaerker_summierend.png}                               \\
-    $ V_{out} = \frac{1}{\frac{R_1}{R_1 + RF} (+ \frac{1}{A_{ol}})} \cdot V_{in} $                    &
-    $ V_{out} = V_{RF} = -\frac{RF}{R_1}\cdot V_{in}$                                                 &
-    $ V_{out} = RF \cdot I_2 = -RF \cdot (\frac{V_{in1}}{R_1} + \frac{V_{in0}}{R_0}) $                  \\
-    \textbf{Buffer}                                                                                   &
-    \textbf{Invertierender Addierer}                                                                  &
-    \textbf{Gewichteter Subtrahierer}                                                                   \\
-    \includegraphics[width = 3.5cm]{img/OpAmp/Buffer.png}                                             &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Invertierender_Addierer.png}                            &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Gewichteter_Subtrahierer.png}                             \\
-    $ V_{out} = V_{in}$                                                                               &
-    $ V_{out} = - RF \cdot (\frac{V_{in1}}{R_1} + \frac{V_{in2}}{R_2}) $                              &
-    $ V_{out} =-\frac{RF}{R_1} \cdot V_{in1} $                                                          \\
-    \textbf{Differenzverstärker}                                                                      &
-    \textbf{Instrumentenverstärker}                                                                   &
-    \textbf{Mehrstufige Verstärker}                                                                     \\
-    \\
-    \includegraphics[width = 3.5cm]{img/OpAmp/Differenzverstärker.png}                                &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Instrumentenverstärker.png}                             &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Mehrstufige_Verstärker.png}                               \\
-    \\
-    $ V_{out} = V_{AGND} + \frac{R_4}{R_3} \cdot(V_{in1} - V_{in2}) $                                 &
-    $ V_{out} = V_{ref} + \frac{R_4}{R_3} \cdot (1 + \frac{Rf1 + Rf2}{RG}) \cdot (V_{in1} - V_{in2})$ &
-    Verstärkung total $ A_{tot} = A_1 \cdot A_2 \cdot A_3\cdot\dots$                                    \\
-    \textbf{Invertierender Verstärker \newline
-    mit T-Glied in Rückkopplung}                                                                      &
-    \textbf{Negativer Impedanz Konverter NIC}                                                         &
-    \\
-    \includegraphics[width = 3.5cm]{img/OpAmp/Invertierender_Verstärker_mit_T-Glied_Rückkopplung.png} &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Negativer_Impedanz_Verstärker.png}                      &
-    \\
-    $ V_{out} = - V_{in} \cdot \frac{R_2 + R_3 + \frac{R_2R_3}{R4}}{R_1} $                            &
-    $ V_{out} = V_{in} \cdot (1+ \frac{R_2}{R_1})$                                                    &
-    \\
-  \end{tabularx}
+\small
+\begin{tabularx}{0.8\textwidth}{p{155pt}p{155pt}p{155pt}}
+  \textbf{Nicht Invertierender Verstärker}                                                          &
+  \textbf{Invertierender Verstärker}                                                                &
+  \textbf{Summierender Verstärker}                                                                    \\
+  \includegraphics[width = 3.5cm]{img/OpAmp/Verstaerker_nicht_invertierend.png}                     &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Verstaerker_invertierend.png}                           &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Verstaerker_summierend.png}                               \\
+  $ V_{out} = V_{in} \cdot (1 + \frac{R_F}{R_1})$                                                   &
+  $ V_{out} = V_{RF} = -\frac{RF}{R_1}\cdot V_{in}$                                                 &
+  $ V_{out} = RF \cdot I_2 = -RF \cdot (\frac{V_{in1}}{R_1} + \frac{V_{in0}}{R_0}) $                  \\
+  \\
+  \textbf{Buffer}                                                                                   &
+  \textbf{Invertierender Addierer}                                                                  &
+  \textbf{Gewichteter Subtrahierer}                                                                   \\
+  \includegraphics[width = 3.5cm]{img/OpAmp/Buffer.png}                                             &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Invertierender_Addierer.png}                            &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Gewichteter_Subtrahierer.png}                             \\
+  $ V_{out} = V_{in}$                                                                               &
+  $ V_{out} = - RF \cdot (\frac{V_{in1}}{R_1} + \frac{V_{in2}}{R_2}) $                              &
+  $ V_{out} =-\frac{RF}{R_1} \cdot V_{in1} $                                                          \\
+  \\
+  \textbf{Differenzverstärker}                                                                      &
+  \textbf{Instrumentenverstärker}                                                                   &
+  \textbf{Mehrstufige Verstärker}                                                                     \\
+  \includegraphics[width = 3.5cm]{img/OpAmp/Differenzverstärker.png}                                &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Instrumentenverstärker.png}                             &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Mehrstufige_Verstärker.png}                               \\
+  $ V_{out} = V_{AGND} + \frac{R_4}{R_3} \cdot(V_{in1} - V_{in2}) $                                 &
+  $ V_{out} = V_{ref} + \frac{R_4}{R_3} \cdot (1 + \frac{Rf1 + Rf2}{RG}) \cdot (V_{in1} - V_{in2})$ &
+  Verstärkung total $ A_{tot} = A_1 \cdot A_2 \cdot A_3\cdot\dots$                                    \\
+  \\
+  \textbf{Invertierender Verstärker \newline
+  mit T-Glied in Rückkopplung}                                                                      &
+  \textbf{Negativer Impedanz Konverter NIC}                                                           \\
+  \includegraphics[width = 3.5cm]{img/OpAmp/Invertierender_Verstärker_mit_T-Glied_Rückkopplung.png} &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Negativer_Impedanz_Verstärker.png}                        \\
+  $ V_{out} = - V_{in} \cdot \frac{R_2 + R_3 + \frac{R_2R_3}{R4}}{R_1} $                            &
+  $ V_{out} = V_{in} \cdot (1+ \frac{R_2}{R_1})$                                                    &
+  \\
+\end{tabularx}
 \endgroup
 
 \subsubsection{Gesteuerte Quellen}
 \begingroup
-  \small
-  \begin{tabularx}{0.8\textwidth}{p{100pt}p{100pt}p{100pt}p{120pt}}
-    \textbf{Spannungsgesteuerte \newline Stromquelle V1}                                         &
-    \textbf{Spannungsgesteuerte \newline  Stromquelle V2}                                        &
-    \textbf{Spannungsgesteuerte \newline Stromquelle \newline
-    für geerdete Last RL}                                                                        &
-    \textbf{Stromgesteuerte \newline Stromquelle}                                                           \\
-    \includegraphics[width = 3.5cm]{img/OpAmp/Spannungsgesteuerte_Stromquelle_V1.png}            &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Spannungsgesteuerte_Stromquelle_V2.png}            &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Spannungsgesteuerte_Stromquelle_geerdete_Last.png} &
-    \includegraphics[width = 3.5cm]{img/OpAmp/Stromgesteuerte_Stromquelle.png}                     \\
-    $ I_L = \frac{V_{in}}{R_1} $                                                                 &
-    $ I_L = \frac{V_{in}}{R_S} $                                                                 &
-    $ I_L = \frac{V_{in}}{R_1} $                                                                 &
-    $ R_1I_1=R_2I_2; \; A_i = \frac{I_2}{I_1} = \frac{R_1}{R_2}  $
-  \end{tabularx}
+\small
+\begin{tabularx}{0.8\textwidth}{p{100pt}p{100pt}p{100pt}p{120pt}}
+  \textbf{Spannungsgesteuerte \newline Stromquelle V1}                                         &
+  \textbf{Spannungsgesteuerte \newline  Stromquelle V2}                                        &
+  \textbf{Spannungsgesteuerte \newline Stromquelle \newline
+  für geerdete Last RL}                                                                        &
+  \textbf{Stromgesteuerte \newline Stromquelle}                                                  \\
+  \includegraphics[width = 3.5cm]{img/OpAmp/Spannungsgesteuerte_Stromquelle_V1.png}            &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Spannungsgesteuerte_Stromquelle_V2.png}            &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Spannungsgesteuerte_Stromquelle_geerdete_Last.png} &
+  \includegraphics[width = 3.5cm]{img/OpAmp/Stromgesteuerte_Stromquelle.png}                     \\
+  $ I_L = \frac{V_{in}}{R_1} $                                                                 &
+  $ I_L = \frac{V_{in}}{R_S} $                                                                 &
+  $ I_L = \frac{V_{in}}{R_1} $                                                                 &
+  $ R_1I_1=R_2I_2; \; A_i = \frac{I_2}{I_1} = \frac{R_1}{R_2}  $
+\end{tabularx}
 \endgroup
 
 \subsubsection{Filterschaltungen}
 \begingroup
-  \small
-  \begin{tabularx}{0.8\textwidth}{p{155pt}p{155pt}p{155pt}}  \textbf{RC-Integrator}                    &
-    \textbf{Differenzierer}                                                              &
-    \textbf{Tiefpass-Filter}                                                               \\
-    \includegraphics[width=3.5cm]{img/OpAmp/RC-Integrator.png}                           &
-    \includegraphics[width=3.5cm]{img/OpAmp/Differenzierer.png}                          &
-    \includegraphics[width=3.5cm]{img/OpAmp/TiefpassFilter.png}                            \\
-    $V_{out}(t) = -\frac{1}{C} \int \limits _0 ^t i_c(\tau) d\tau + V_c(t=0)$ \newline
-    $V_{out}(t) = -\frac{1}{R \cdot C} \int \limits _0 ^t V_{in}(\tau) d\tau + V_c(t=0)$ &
-    $ pen$                                                                               &
-    \\
-    \textbf{Bandpass-Filter}                                                             &
-    \textbf{Allpass-Filter}                                                              &
-    \\
-    \includegraphics[width=3.5cm]{img/OpAmp/BandPass.png}                                &
-    \includegraphics[width=3.5cm]{img/OpAmp/AllPass.png}                                 &
-    \\
-    $ asdf$
-  \end{tabularx}
+\small
+\begin{tabularx}{0.8\textwidth}{p{155pt}p{155pt}p{155pt}}
+  \textbf{RC-Integrator}                                                                        &
+  \textbf{Differenzierer}                                                                       &
+  \textbf{Tiefpass-Filter}                                                                        \\
+  \includegraphics[width=3.5cm]{img/OpAmp/RC-Integrator.png}                                    &
+  \includegraphics[width=3.5cm]{img/OpAmp/Differenzierer.png}                                   &
+  \includegraphics[width=3.5cm]{img/OpAmp/TiefpassFilter.png}                                     \\
+  $V_{out}(t) = -\frac{1}{C} \int \limits _0 ^t i_c(\tau) d\tau + V_c(t=0)$
+  \newline $V_{out}(t) = -\frac{1}{R \cdot C} \int \limits _0 ^t V_{in}(\tau) d\tau + V_c(t=0)$ &
+  $V_{out} = -R_FC_1\frac{dv_{in}}{dt}$
+  \newline  $i_c = C_1\frac{dv_c}{dt} = C_1\frac{dv_{in}}{dt} $                                 &
+  Grenzfrequenz: $\frac{1}{2\pi R C} $
+  \newline DC: $I_C = 0; \; V_{out} = -\frac{Rf}{R1}\cdot V_{in}$                                 \\
+  \textbf{Bandpass-Filter}                                                                      &
+  \textbf{Allpass-Filter}                                                                       &
+  \\
+  \includegraphics[width=3.5cm]{img/OpAmp/BandPass.png}                                         &
+  \includegraphics[width=3.5cm]{img/OpAmp/AllPass.png}                                          &
+  \\
+\end{tabularx}
 \endgroup
 \subsection{Nicht ideale OpAmps}
-Offset-Spannung
-Eingans-ströme
-Arbeitsbereiche
-Begrenzte Verstärkung $A_ol$
+\begin{multicols*}{2}
+
+  \subsubsection*{Offset-Spannung \& Begrenzte Verstärkung}
+  \begin{itemize}
+    \item \textbf{Buffer}:
+          \begin{itemize}
+            \item $V_{out} = A_{ol} \cdot [(V_{in}+V_{os}) - V_{out}]$
+            \item Wenn $A_{ol}>>1$ : $V_{out} = V_{in} + V_{os}$
+          \end{itemize}
+    \item \textbf{Verstärker}:
+          \begin{itemize}
+            \item $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot(V_{in}+V_{os}) $
+            \item Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1+R_2}{R_1}\cdot(V_{in}+V_{os})$
+          \end{itemize}
+    \item \textbf{Invertierender Verstärker}
+          \begin{itemize}
+            \item $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot[(V_{AGND} + V_{os})-V_{in}\cdot\frac{R_2}{R_1+R_2}]$
+            \item Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1 + R_2}{R_1}\cdot(V_{AGND}+V_{os})-\frac{R_2}{R_1}\cdot V_{in} $
+          \end{itemize}
+    \item \textbf{Allgemein}:
+          \begin{itemize}
+            \item $V_{out} = \frac{R1 + R2}{R1}\cdot(V_{AGND}+R_{os})-\frac{R2}{R1}\cdot V_{in}$
+          \end{itemize}
+  \end{itemize}
+  \subsubsection*{Eingangs-Ströme}
+  \textbf{Bias-Strom}\\
+  \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangsstrom.png}\\
+  Rechnung mit Superposition:\\
+  $V_{out E} = V_{outE(N)} + V_{outE(P)} = I_NR_F-R_2I_P(\frac{R_F+R_1}{R_1}) $\\
+  \textbf{Offset-Strom}
+  $V_{out E} = R_F\cdot(I_N-I_P) = R_F\cdot I_{OS}$
+  \subsubsection*{Einganswiderstände}
+  \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
+\end{multicols*}
+
+
 \end{document}
