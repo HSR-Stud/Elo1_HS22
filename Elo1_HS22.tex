@@ -194,25 +194,21 @@ AC und DC Teile der Schaltung separat anschauen.
 
   \subsubsection*{Offset-Spannung \& Begrenzte Verstärkung}
   \begin{itemize}
-    \item \textbf{Buffer}:
-          \begin{itemize}
-            \item $V_{out} = A_{ol} \cdot [(V_{in}+V_{os}) - V_{out}]$
-            \item Wenn $A_{ol}>>1$ : $V_{out} = V_{in} + V_{os}$
-          \end{itemize}
-    \item \textbf{Verstärker}:
-          \begin{itemize}
-            \item $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot(V_{in}+V_{os}) $
-            \item Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1+R_2}{R_1}\cdot(V_{in}+V_{os})$
-          \end{itemize}
-    \item \textbf{Invertierender Verstärker}
-          \begin{itemize}
-            \item $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot[(V_{AGND} + V_{os})-V_{in}\cdot\frac{R_2}{R_1+R_2}]$
-            \item Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1 + R_2}{R_1}\cdot(V_{AGND}+V_{os})-\frac{R_2}{R_1}\cdot V_{in} $
-          \end{itemize}
-    \item \textbf{Allgemein}:
-          \begin{itemize}
-            \item $V_{out} = \frac{R1 + R2}{R1}\cdot(V_{AGND}+R_{os})-\frac{R2}{R1}\cdot V_{in}$
-          \end{itemize}
+    \item \textbf{Buffer}: \\
+          $V_{out} = A_{ol} \cdot [(V_{in}+V_{os}) - V_{out}]$ \\
+          Wenn $A_{ol}>>1$ : $V_{out} = V_{in} + V_{os}$
+
+    \item \textbf{Verstärker}: \\
+          $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot(V_{in}+V_{os}) $\\
+          Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1+R_2}{R_1}\cdot(V_{in}+V_{os})$
+
+    \item \textbf{Invertierender Verstärker}: \\
+          $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot[(V_{AGND} + V_{os})-V_{in}\cdot\frac{R_2}{R_1+R_2}]$ \\
+          Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1 + R_2}{R_1}\cdot(V_{AGND}+V_{os})-\frac{R_2}{R_1}\cdot V_{in} $
+
+    \item \textbf{Allgemein}: \\
+          $V_{out} = \frac{R1 + R2}{R1}\cdot(V_{agnd}+R_{os})-\frac{R2}{R1}\cdot V_{in}$
+
   \end{itemize}
   \subsubsection*{Eingangs-Ströme}
   \textbf{Bias-Strom}\\
@@ -224,6 +220,23 @@ AC und DC Teile der Schaltung separat anschauen.
   \subsubsection*{Einganswiderstände}
   \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
 \end{multicols*}
+\subsubsection*{OpAmp als Komparator}
+\includegraphics[width=4cm]{img/OpAmp/Komparator.png}
+$V_{out} = V_{mitte} = \frac{V_{pos} + V_{neg}}{2}$
+\subsubsection*{Schmitt-Trigger (nicht invertierend)}
+TODO: % Formatierung beheben
+\includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_nicht_invertierend.png}
+$V_{T+} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_F} $ \\
+$V_{T-} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_F} $\\
+$V_H = V_{T+} - V_{T-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_F}$
 
+\subsubsection*{Schmitt Trigger (invertierend)}
+\includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_invertierend.png}
+$V_{T+} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_1 + R_F} $ \\
+$V_{T-} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_1 + R_F} $\\
+$V_H = V_{T+} - V_{T-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_1+R_F}$
+
+
+\section{Digital-/Analogwandler}
 
 \end{document}
