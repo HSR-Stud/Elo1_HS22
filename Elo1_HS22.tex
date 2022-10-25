@@ -98,7 +98,7 @@ AC und DC Teile der Schaltung separat anschauen.
 \end{multicols}
 
 \includegraphics[width = 15cm]{img/Tabelle Kleinsignal Ersatzschaltung.png}
-
+\newpage
 \section{OpAmp}
 \subsection{Schaltungen mit negativer Rückkopplung}
 \begingroup
@@ -189,54 +189,55 @@ AC und DC Teile der Schaltung separat anschauen.
   \\
 \end{tabularx}
 \endgroup
-\subsection{Nicht ideale OpAmps}
 \begin{multicols*}{2}
+\subsection{Nicht ideale OpAmps}
 
+  \small
   \subsubsection*{Offset-Spannung \& Begrenzte Verstärkung}
   \begin{itemize}
     \item \textbf{Buffer}: \\
-          $V_{out} = A_{ol} \cdot [(V_{in}+V_{os}) - V_{out}]$ \\
-          Wenn $A_{ol}>>1$ : $V_{out} = V_{in} + V_{os}$
+          $V_{out} = A_{ol} \cdot [(V_{in}+V_{os}) - V_{out}]$
+          \\$[A_{ol}\gg 1$ : $V_{out} = V_{in} + V_{os}]$
 
     \item \textbf{Verstärker}: \\
-          $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot(V_{in}+V_{os}) $\\
-          Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1+R_2}{R_1}\cdot(V_{in}+V_{os})$
+          $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot(V_{in}+V_{os}) $
+          \\$[A_{ol}\gg 1$: $V_{out} = \frac{R_1+R_2}{R_1}\cdot(V_{in}+V_{os})]$
 
     \item \textbf{Invertierender Verstärker}: \\
-          $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot[(V_{AGND} + V_{os})-V_{in}\cdot\frac{R_2}{R_1+R_2}]$ \\
-          Wenn $A_{ol}>>1$: $V_{out} = \frac{R_1 + R_2}{R_1}\cdot(V_{AGND}+V_{os})-\frac{R_2}{R_1}\cdot V_{in} $
+          $V_{out} = \frac{A_{ol}}{1+A_{ol}\cdot\frac{R_1}{R_1+R_2}}\cdot[(V_{AGND} + V_{os})-V_{in}\cdot\frac{R_2}{R_1+R_2}]$
+          \\ $[A_{ol}\gg 1$: $V_{out} = \frac{R_1 + R_2}{R_1}\cdot(V_{AGND}+V_{os})-\frac{R_2}{R_1}\cdot V_{in}]$
 
     \item \textbf{Allgemein}: \\
           $V_{out} = \frac{R1 + R2}{R1}\cdot(V_{agnd}+R_{os})-\frac{R2}{R1}\cdot V_{in}$
 
   \end{itemize}
-  \subsubsection*{Eingangs-Ströme}
   \textbf{Bias-Strom}\\
   \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangsstrom.png}\\
   Rechnung mit Superposition:\\
-  $V_{out E} = V_{outE(N)} + V_{outE(P)} = I_NR_F-R_2I_P(\frac{R_F+R_1}{R_1}) $\\
+  $V_{out E} = I_NR_F-R_2I_P(\frac{R_F+R_1}{R_1}) $\\
   \textbf{Offset-Strom}
   $V_{out E} = R_F\cdot(I_N-I_P) = R_F\cdot I_{OS}$
   \subsubsection*{Einganswiderstände}
   \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
+
+\subsection{OpAmp als Komparator}
+  \includegraphics[width=4cm]{img/OpAmp/Komparator.png}\\
+  $V_{out} = V_{mitte} = \frac{V_{pos} + V_{neg}}{2}$
+  \subsubsection*{Schmitt-Trigger (nicht invertierend)}
+
+  \includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_nicht_invertierend.png}\\
+
+  $V_{T_+} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_F} $ \\
+  $V_{T_-} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_F} $\\
+  $V_H = V_{T_+} - V_{T_-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_F}$
+
+  \subsubsection*{Schmitt Trigger (invertierend)}
+  \includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_invertierend.png}\\
+  $V_{T_+} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_1 + R_F} $ \\
+  $V_{T_-} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_1 + R_F} $\\
+  $V_H = V_{T_+} - V_{T_-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_1+R_F}$
 \end{multicols*}
-\subsubsection*{OpAmp als Komparator}
-\includegraphics[width=4cm]{img/OpAmp/Komparator.png}
-$V_{out} = V_{mitte} = \frac{V_{pos} + V_{neg}}{2}$
-\subsubsection*{Schmitt-Trigger (nicht invertierend)}
-TODO: % Formatierung beheben
-\includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_nicht_invertierend.png}
-$V_{T+} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_F} $ \\
-$V_{T-} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_F} $\\
-$V_H = V_{T+} - V_{T-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_F}$
-
-\subsubsection*{Schmitt Trigger (invertierend)}
-\includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_invertierend.png}
-$V_{T+} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_1 + R_F} $ \\
-$V_{T-} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_1 + R_F} $\\
-$V_H = V_{T+} - V_{T-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_1+R_F}$
-
-
+\newpage
 \section{Digital-/Analogwandler}
-
+TODO: %section
 \end{document}
