@@ -139,7 +139,7 @@ AC und DC Teile der Schaltung separat anschauen.
   \textbf{Negativer Impedanz Konverter NIC}                                                           \\
   \includegraphics[width = 3.5cm]{img/OpAmp/Invertierender_Verstärker_mit_T-Glied_Rückkopplung.png} &
   \includegraphics[width = 3.5cm]{img/OpAmp/Negativer_Impedanz_Verstärker.png}                        \\
-  $ V_{out} = - V_{in} \cdot \frac{R_2 + R_3 + \frac{R_2R_3}{R4}}{R_1} $                            &
+  $ V_{out} = - V_{in} \cdot \frac{R_2 + R_3 + \frac{R_2R_3}{R4}}{R_1} $
   $ V_{out} = V_{in} \cdot (1+ \frac{R_2}{R_1})$                                                    &
   \\
 \end{tabularx}
@@ -190,7 +190,7 @@ AC und DC Teile der Schaltung separat anschauen.
 \end{tabularx}
 \endgroup
 \begin{multicols*}{2}
-\subsection{Nicht ideale OpAmps}
+  \subsection{Nicht ideale OpAmps}
 
   \small
   \subsubsection*{Offset-Spannung \& Begrenzte Verstärkung}
@@ -220,7 +220,7 @@ AC und DC Teile der Schaltung separat anschauen.
   \subsubsection*{Einganswiderstände}
   \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
 
-\subsection{OpAmp als Komparator}
+  \subsection{OpAmp als Komparator}
   \includegraphics[width=4cm]{img/OpAmp/Komparator.png}\\
   $V_{out} = V_{mitte} = \frac{V_{pos} + V_{neg}}{2}$
   \subsubsection*{Schmitt-Trigger (nicht invertierend)}
@@ -239,5 +239,23 @@ AC und DC Teile der Schaltung separat anschauen.
 \end{multicols*}
 \newpage
 \section{Digital-/Analogwandler}
-TODO: %section
+
+\begin{tabular}{c c c c c}
+
+  \includegraphics[height = 3.5cm]{img/DAC/Parallelverfahren.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/Wägeverfahren.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/Wägeverfahren_Ströme.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/C-DAC.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/R-2R-DAC.png}
+  \\ \includegraphics[width = 3.5cm]{img/DAC/DAC_mit_Zählverfahren.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/Kaskadierte_Wandler.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/Zyklischer_DAC.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/Pipelined_DAC.png}
+   & \includegraphics[width = 3.5cm]{img/DAC/Multiplizierender_Wanlder.png}
+  \\ \includegraphics[height = 3.5cm]{img/DAC/Exponentieller_DAC.png}
+\end{tabular}
+
+
+
+
 \end{document}
