@@ -66,6 +66,10 @@
 \section*{Lizenz}
 \doclicenseThis
 
+\subsection*{Note}
+Erlaubte Unterlagen an Prüfung: 5x A4-Blätter Zusammenfassung \\
+Weitere Hilfsmittel: Taschenrechner
+
 \clearpage
 \tableofcontents
 
@@ -74,8 +78,6 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-\section*{NOTE}
-Erlaubte Unterlagen an Prüfung: 5x A4-Seiten Zusammenfassung, Taschenrechner
 \section{Arbeitspunktbestimmung}
 AC und DC Teile der Schaltung separat anschauen.
 \begin{multicols}{2}
@@ -140,6 +142,7 @@ AC und DC Teile der Schaltung separat anschauen.
   \includegraphics[width = 3.5cm]{img/OpAmp/Invertierender_Verstärker_mit_T-Glied_Rückkopplung.png} &
   \includegraphics[width = 3.5cm]{img/OpAmp/Negativer_Impedanz_Verstärker.png}                        \\
   $ V_{out} = - V_{in} \cdot \frac{R_2 + R_3 + \frac{R_2R_3}{R4}}{R_1} $
+  \newline
   $ V_{out} = V_{in} \cdot (1+ \frac{R_2}{R_1})$                                                    &
   \\
 \end{tabularx}
@@ -168,7 +171,7 @@ AC und DC Teile der Schaltung separat anschauen.
 \subsubsection{Filterschaltungen}
 \begingroup
 \small
-\begin{tabularx}{0.8\textwidth}{p{155pt}p{155pt}p{155pt}}
+\begin{tabularx}{\textwidth}{p{155pt}p{155pt}p{155pt}}
   \textbf{RC-Integrator}                                                                        &
   \textbf{Differenzierer}                                                                       &
   \textbf{Tiefpass-Filter}                                                                        \\
@@ -189,9 +192,8 @@ AC und DC Teile der Schaltung separat anschauen.
   \\
 \end{tabularx}
 \endgroup
-\begin{multicols*}{2}
-  \subsection{Nicht ideale OpAmps}
-
+\subsection{Nicht ideale OpAmps}
+\begin{multicols}{2}
   \small
   \subsubsection*{Offset-Spannung \& Begrenzte Verstärkung}
   \begin{itemize}
@@ -211,21 +213,24 @@ AC und DC Teile der Schaltung separat anschauen.
           $V_{out} = \frac{R1 + R2}{R1}\cdot(V_{agnd}+R_{os})-\frac{R2}{R1}\cdot V_{in}$
 
   \end{itemize}
-  \textbf{Bias-Strom}\\
-  \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangsstrom.png}\\
-  Rechnung mit Superposition:\\
+  \subsubsection*{Bias-Strom}
+  \includegraphics[height=3cm]{img/OpAmp/Fehler_Eingangsstrom.png}
+  \tiny{Rechnung mit Superposition:}\\
   $V_{out E} = I_NR_F-R_2I_P(\frac{R_F+R_1}{R_1}) $\\
   \textbf{Offset-Strom}
   $V_{out E} = R_F\cdot(I_N-I_P) = R_F\cdot I_{OS}$
   \subsubsection*{Einganswiderstände}
-  \includegraphics[width=5cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
+  \includegraphics[height=3cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
+\end{multicols}
 
+\begin{multicols}{2}
   \subsection{OpAmp als Komparator}
-  \includegraphics[width=4cm]{img/OpAmp/Komparator.png}\\
+  \includegraphics[width=3cm]{img/OpAmp/Komparator.png}\\
   $V_{out} = V_{mitte} = \frac{V_{pos} + V_{neg}}{2}$
   \subsubsection*{Schmitt-Trigger (nicht invertierend)}
 
-  \includegraphics[width=4cm]{img/OpAmp/Schmitt-Trigger_nicht_invertierend.png}\\
+  \includegraphics[width=3cm]{img/OpAmp/Schmitt-Trigger_nicht_invertierend.png}
+
 
   $V_{T_+} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_F} $ \\
   $V_{T_-} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_F} $\\
@@ -236,24 +241,75 @@ AC und DC Teile der Schaltung separat anschauen.
   $V_{T_+} = V_{ref} + (V_{out max} - V_{ref})\frac{R_1}{R_1 + R_F} $ \\
   $V_{T_-} = V_{ref} + (V_{ref} - V_{out min})\frac{R_1}{R_1 + R_F} $\\
   $V_H = V_{T_+} - V_{T_-} = (V_{outmax} - V_{outmin})\frac{R_1}{R_1+R_F}$
-\end{multicols*}
+\end{multicols}
 \newpage
 \section{Digital-/Analogwandler}
 
-\begin{tabular}{c c c c c}
+\begin{multicols}{5}
 
-  \includegraphics[height = 3.5cm]{img/DAC/Parallelverfahren.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/Wägeverfahren.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/Wägeverfahren_Ströme.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/C-DAC.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/R-2R-DAC.png}
-  \\ \includegraphics[width = 3.5cm]{img/DAC/DAC_mit_Zählverfahren.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/Kaskadierte_Wandler.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/Zyklischer_DAC.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/Pipelined_DAC.png}
-   & \includegraphics[width = 3.5cm]{img/DAC/Multiplizierender_Wanlder.png}
-  \\ \includegraphics[height = 3.5cm]{img/DAC/Exponentieller_DAC.png}
-\end{tabular}
+
+  \subsubsection*{Parallelverfahren}
+  \includegraphics[height = 3cm]{img/DAC/Parallelverfahren.png}
+
+  \subsubsection*{Wägeverfahren}
+  \scriptsize
+  \textbf{Spannung}
+  \includegraphics[width = 3cm]{img/DAC/Wägeverfahren.png}
+  \\\textbf{Strom}
+  \includegraphics[width = 3cm]{img/DAC/Wägeverfahren_Ströme.png}
+  \\\textbf{Kapazität}
+  \includegraphics[width = 3cm]{img/DAC/C-DAC.png}
+  \\\textbf{R-2R}
+  \includegraphics[width = 3cm]{img/DAC/R-2R-DAC.png}
+
+  \subsubsection*{Zählverfahren}
+  \scriptsize
+  \textbf{PWM} \\
+  \tiny{
+    $\bar{V_{out} = V_{ref} \cdot \frac{n}{N}}$
+    \\ Geglättete Ausgangsspannung ergibt DC}
+  \includegraphics[width = 3cm]{img/DAC/PWM.png}
+  \subsubsection*{Weitere Formen}
+  \scriptsize
+  \textbf{Kaskadiert}
+  \includegraphics[width = 3cm]{img/DAC/Kaskadierte_Wandler.png}
+  \\\textbf{Zyklisch}
+  \includegraphics[width = 3cm]{img/DAC/Zyklischer_DAC.png}
+  \\\textbf{Pipelined}
+  \includegraphics[width = 3cm]{img/DAC/Pipelined_DAC.png}
+  \\\textbf{Mutliplizierend}
+  \includegraphics[width = 3cm]{img/DAC/Multiplizierender_Wanlder.png}
+  \\\textbf{Exponentiell}
+  \\\includegraphics[height = 2cm]{img/DAC/Exponentieller_DAC.png}
+
+  \normalsize
+\end{multicols}
+\subsubsection*{Fehler}
+\begingroup
+\small
+\begin{tabularx}{\textwidth}{p{0.2\textwidth}p{0.2\textwidth}p{0.2\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
+  \textbf{Offset}
+   &
+  \textbf{Verstärkungsfehler}
+   &
+  \textbf{Integrale \newline Nichtlinearität}
+   &
+  \textbf{Differentielle Nichtlinearität}
+   &
+  \textbf{Verzögerungszeit}
+  \\
+  \includegraphics[width = 2cm]{img/DAC/Fehler/Offset.png}
+   &
+  \includegraphics[width = 2cm]{img/DAC/Fehler/Verstärkung.png}
+   &
+  \includegraphics[width = 2cm]{img/DAC/Fehler/IntegraleNichtlinearität.png}
+   &
+  \includegraphics[width = 2cm]{img/DAC/Fehler/DifferentielleNichtlinearität.png}
+   &
+  \includegraphics[width = 2cm]{img/DAC/Fehler/Verzögerungszeit.png}
+\end{tabularx}
+\endgroup
+
 
 
 
