@@ -310,8 +310,65 @@ AC und DC Teile der Schaltung separat anschauen.
 \end{tabularx}
 \endgroup
 
+\section{Analog-Digital Wandler (ADC)}
+\begin{multicols}{3}
+  \begin{minipage}{0.3\textwidth}
+    \textbf{Parallelverfahren}
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/Parallel-Verfahren.png}
+    \\Pipeline-ADC
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/Pipeline.png}
+  \end{minipage}
 
+  \begin{minipage}{0.3\textwidth}
+    \textbf{Wägeverfahren}
+    \\Succsessive Approximation Register (SAR)
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/Wägeverfahren.png}
+    \\Iterativer ADC
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/IterativerADC.png}
+  \end{minipage}
 
+  \begin{minipage}{0.3\textwidth}
+    \textbf{Zählverfahren}
+    \\ Einfachster Aufbau
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/EinfachZählverfahren.png}
+    \\ Single Slope Wandler
+    \\ $V_{int}(t) = \frac{-V_{in}}{R\cdot C}\cdot t$
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/SingleSlopeWandler.png}
+    \\ Dual Slope Wandler
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/DualSlopeWandler.png}
+    \\ Integrierender ADC
+    \\ $V_{int} = \frac{\bar{V_{in}}\cdot T_{int}}{R_i \cdot C_i} = -V_{abint}$
+    \\\includegraphics[width=0.25\textwidth]{img/ADC/IntegrierenderADC.png}
+  \end{minipage}
+\end{multicols}
 
+\subsection{Fehler von ADC's}
+\begin{tabularx}{\textwidth}{p{0.16\textwidth}p{0.16\textwidth}p{0.16\textwidth}p{0.16\textwidth}p{0.16\textwidth}p{0.16\textwidth}}
+  \textbf{Offset}
+   &
+  \textbf{Verstärkung-\newline Fehler}
+   &
+  \textbf{Integrale \newline Nichtlinearität}
+   &
+  \textbf{Differentielle Nichtlinearität}
+   &
+  \textbf{Quantisierung}
+   &
+  \textbf{Aliasing}
+  \\
+  \includegraphics[width = 1.6cm]{img/ADC/OffsetFehler.png}
+   &
+  \includegraphics[width = 1.6cm]{img/ADC/Verstärkung.png}
+   &
+  \includegraphics[width = 1.6cm]{img/ADC/IntegraleNichtlinearität.png}
+   &
+  \includegraphics[width = 1.6cm]{img/ADC/DifferentielleNichtlinearität.png}
+   &
+  \includegraphics[width = 1.6cm]{img/ADC/Quantisierungsfehler.png}
+   &
+  \includegraphics[width = 1.6cm]{img/ADC/Aliasing.png}
+\end{tabularx}
 
+\subsection{Quantisierung und Signal to Noise Ratio (SNR)}
+\huge TODO: %this section, Vorlesung ab Folie 58
 \end{document}
