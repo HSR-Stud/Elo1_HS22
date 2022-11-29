@@ -17,6 +17,12 @@
 \usepackage{tikz}
 \usepackage[european]{circuitikz}
 \usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{colortbl}
+
+%% Color Configutation
+
+
 \setdefaultlanguage[variant=swiss]{german}
 
 %% License configuration
@@ -193,10 +199,11 @@ AC und DC Teile der Schaltung separat anschauen.
 \end{tabularx}
 \endgroup
 \subsection{Nicht ideale OpAmps}
-\begin{multicols}{2}
+\begin{minipage}{0.5\textwidth}
+
   \small
   \subsubsection*{Offset-Spannung \& Begrenzte Verstärkung}
-  \begin{itemize}
+  \begin{itemize}[leftmargin=*]
     \item \textbf{Buffer}: \\
           $V_{out} = A_{ol} \cdot [(V_{in}+V_{os}) - V_{out}]$
           \\$[A_{ol}\gg 1$ : $V_{out} = V_{in} + V_{os}]$
@@ -213,15 +220,17 @@ AC und DC Teile der Schaltung separat anschauen.
           $V_{out} = \frac{R1 + R2}{R1}\cdot(V_{agnd}+R_{os})-\frac{R2}{R1}\cdot V_{in}$
 
   \end{itemize}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
   \subsubsection*{Bias-Strom}
-  \includegraphics[height=3cm]{img/OpAmp/Fehler_Eingangsstrom.png}
-  \tiny{Rechnung mit Superposition:}\\
+  \includegraphics[height=2.5cm]{img/OpAmp/Fehler_Eingangsstrom.png}
+  \\ \tiny{Rechnung mit Superposition:}\\
   $V_{out E} = I_NR_F-R_2I_P(\frac{R_F+R_1}{R_1}) $\\
   \textbf{Offset-Strom}
   $V_{out E} = R_F\cdot(I_N-I_P) = R_F\cdot I_{OS}$
   \subsubsection*{Einganswiderstände}
-  \includegraphics[height=3cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
-\end{multicols}
+  \includegraphics[height=2.5cm]{img/OpAmp/Fehler_Eingangswiderstand.png}\\
+\end{minipage}
 
 \begin{multicols}{2}
   \subsection{OpAmp als Komparator}
@@ -312,14 +321,14 @@ AC und DC Teile der Schaltung separat anschauen.
 
 \section{Analog-Digital Wandler (ADC)}
 \begin{multicols}{3}
-  \begin{minipage}{0.3\textwidth}
+  \begin{minipage}{0.29\textwidth}
     \textbf{Parallelverfahren}
     \\\includegraphics[width=0.25\textwidth]{img/ADC/Parallel-Verfahren.png}
     \\Pipeline-ADC
     \\\includegraphics[width=0.25\textwidth]{img/ADC/Pipeline.png}
   \end{minipage}
 
-  \begin{minipage}{0.3\textwidth}
+  \begin{minipage}{0.29\textwidth}
     \textbf{Wägeverfahren}
     \\Succsessive Approximation Register (SAR)
     \\\includegraphics[width=0.25\textwidth]{img/ADC/Wägeverfahren.png}
@@ -327,7 +336,7 @@ AC und DC Teile der Schaltung separat anschauen.
     \\\includegraphics[width=0.25\textwidth]{img/ADC/IterativerADC.png}
   \end{minipage}
 
-  \begin{minipage}{0.3\textwidth}
+  \begin{minipage}{0.29\textwidth}
     \textbf{Zählverfahren}
     \\ Einfachster Aufbau
     \\\includegraphics[width=0.25\textwidth]{img/ADC/EinfachZählverfahren.png}
@@ -370,5 +379,157 @@ AC und DC Teile der Schaltung separat anschauen.
 \end{tabularx}
 
 \subsection{Quantisierung und Signal to Noise Ratio (SNR)}
-\huge TODO: %this section, Vorlesung ab Folie 58
+{\huge TODO:} %this section, Vorlesung ab Folie 58
+\normalsize
+
+\section{Halbleiter}
+\subsection{Einführung}
+\begin{multicols}{2}
+  \subsubsection*{Elektrische Leitfähigkeit und Widerstand}
+  $$\kappa = \frac{1}{\rho} = n \cdot q \cdot \mu$$
+  $$R = \rho \cdot \frac{l}{A} = \frac{l}{\kappa \cdot A} $$
+  {\\ \tiny \begin{itemize}[leftmargin=*]
+        \item $\kappa$: Spezifische Leitfähigkeit
+        \item $\rho$: Spezifischer Widerstand
+        \item $n$: Ladungsträgerdichte
+        \item $q$: Elementarladung
+        \item $l$: Leiterlänge
+        \item $A$: leiterquerschnittsfläche
+      \end{itemize}}
+
+  \subsubsection*{Temperaturabhängigkeit}
+  $$\rho = f(T)$$
+  \\annäherung 1. Ordnung:
+  $$\rho(T) = \rho(T_0) \cdot (1+ \alpha(T-T_0))$$
+  {\\ \tiny Tabelle im Anhang.}
+
+  \subsubsection{Dotierung}
+  P-Dotiert: 3 Wertiges Element wird eingesetzt --> Löcher
+  N-Dotiert: 5 Wertiges Element wird eingesetzt --> Freie Elektronen
+\end{multicols}
+\begin{multicols}{2}
+  
+  \subsection{Dioden}
+  \includegraphics[width = 2cm]{img/Halbleiter/DifferenziellDiode.png}
+\includegraphics[width = 2cm]{img/Halbleiter/TemperaturkurvenDiode.png}
+{\tiny \begin{itemize}[leftmargin=*]
+  \item $I_s$: Sättigungsstrom
+  \item $n$: Emissionskoeffizient
+  \item $I_d$: Diodenstrom ($A_{+} \rightarrow K_{-}$)
+  \item $V_T$: Temperaturabhängige Spannung
+  \item $k$: Boltzmann Konstante
+  \item $q$: Elementarladung
+  \item $g$: Leitwert ($\frac{1}{R}$)
+\end{itemize}}
+\includegraphics[width = 4cm]{img/Halbleiter/Diode.png}
+$$V_T=\frac{kT}{q}$$
+ $$g = \frac{dl}{dV}
+  = \frac{1}{n \cdot V_T} \cdot I_s \cdot e^{\frac{V}{n\cdot V_T}}
+  = \frac{I}{n \cdot V_T}$$
+$$I_d =I_s(e^{\frac{V_D}{nV_T}}-1)$$
+wenn $V_d > 200$mV: $$I_d = I_s \cdot e^{\frac{V_d}{n \cdot V_t}}$$
+
+\end{multicols}
+\begin{multicols*}{2}
+  
+  
+  \subsection{Bipolar-Transistor}
+  $$I_E = I_C+I_B$$
+  $$I_C = B\cdot I_B \approx \beta \cdot i_B$$
+  $$I_B= I_s \cdot(e^{\frac{V_{BE}}{n \cdot V_T}}-1) \approx I_s e^{\frac{V_{BE}}{n \cdot V_T}}$$
+  $$r_{BE} = \frac{\partial V_{BE}}{\partial I_B} \approx \frac{n \cdot V_T}{I_{B0}} $$
+  {\tiny \begin{itemize}[leftmargin=*]
+    \item C = Collector, E = Emitter, B = Basis
+      \item $B$: Gleichstrom-Verstärkungsfaktor
+      \item $\beta$: Wechselstrom-Verstärkungsfaktor
+    \end{itemize}}
+
+    \subsubsection{Grundschaltungen einstufiger Verstärker}
+    
+    \begin{tabular}{ccc}
+      \textbf{Emitterschaltung}                                            &
+      \textbf{Basisschaltung}                                              &
+      \textbf{Kollektorschaltung}                                            \\
+      \includegraphics[width = 3.5cm]{img/Transistor/Emitterschaltung.png} &
+      \includegraphics[width = 3.5cm]{img/Transistor/Basisschaltung.png}   &
+      \includegraphics[width = 3.5cm]{img/Transistor/Kollektorschaltung.png} \\
+    \end{tabular}
+    
+    \subsection{Emitterschaltung}
+    \includegraphics[width = 3.5cm]{img/Transistor/Verstärkung_Emitterschaltung.png}
+    \includegraphics[width = 3.5cm]{img/Transistor/Uebertragungskennlinie.png}
+    \subsubsection*{Grafische Herleitung Übertragungskennlinie}
+    \begin{enumerate}
+      \item $V_{BE} = V_{in}$
+      \item Kein Ausgansstrom $\rightarrow I_C = I_{RC} = \frac{V_{POS} - V_{out}}{R_C}$
+      \item Kennlinie von $R_C$ einzeichnen
+      \item Schnittpunkte sind mögliche Arbeitspunkte
+    \end{enumerate}
+    \subsubsection*{Berechnet}
+    $$I_{RC} = \frac{V_{POS} - V_{out}}{R_C} = I_C = I_S \cdot \beta \cdot e^{\frac{V_{in}}{n \cdot V_T}}$$
+    $$V_{out} = V_{POS}-R_C \cdot  I_S \cdot \beta \cdot e^{\frac{V_{in}}{n \cdot V_T}}$$
+    {\\ \tiny git für $V_{CE-sat} < V_{out} < V_{POS}$}
+    \subsubsection*{Verstärkung}
+    $$V_{out} = V_{POS} - R_C \cdot \beta \cdot I_S \cdot e^{\frac{V_{in}}{n \cdot V_T}}$$
+    Verstärkung = Ableitung $\frac{\Delta V_{out}}{\Delta V_{in}}$
+    $$\frac{\partial V_{out}}{\partial V_{in}} =- R_C \cdot \beta \cdot I_S \cdot e^{\frac{V_{in}}{n \cdot V_T}} = \frac{-R_C \cdot I_C}{n \cdot V_T} $$
+    
+    \subsubsection{Transistor als Schalter}
+
+    \subsection{Basisschaltung}
+
+    \subsection{Kollektorschaltung}
+
+
+  \end{multicols*}
+    
+    \section*{Tabellen}
+
+Eigenschaften typischer Stoffe:\\
+\begin{tabular}{|ccc|}
+  \hline
+  Material   & $\rho_{20}$ in $\frac{\Omega mm^2}{m}$ & $\alpha_{20}$ in $\frac{1}{K}$ \\[3pt]
+  \hline
+  Silber     & 0.016                                  & $3.8 \cdot 10^{-3}$            \\[3pt]
+  \rowcolor[gray]{.9}
+  Kupfer     & 0.0178                                 & $3.92 \cdot 10^{-3}$           \\[3pt]
+  Gold       & 0.023                                  & $4 \cdot 10^{-3}$              \\[3pt]
+  \rowcolor[gray]{.9}
+  Aluminium  & 0.028                                  & $3.77 \cdot 10^{-3}$           \\[3pt]
+  Konstantan & 0.43                                   & $\pm 40 \cdot 10^{-6}$         \\[3pt]
+  \rowcolor[gray]{.9}
+  Silizium   & $6.25 \cdot 10^6$                      & $-1\cdot 10^{-3} $             \\[3pt]
+  Germanium  & $0.454 \cdot 10^6$                     & $-5\cdot 10^{-3} $             \\[3pt]
+  \rowcolor[gray]{.9}
+  Porzellan  & $5 \cdot 10^18$                        & -                              \\[3pt]
+  \hline
+\end{tabular}
+\\
+
+Konstanten: \\
+\begin{tabular}{|lcl|}
+  \hline
+  Boltzmann Konstante & $k$        & $1.381 \cdot 10^{-23}$Ws/K \\[2pt]
+  \rowcolor[gray]{.9}
+  Elementarladung     & $q$        & $1.602 \cdot 10^{-19}$As   \\[2pt]
+  Temparatur          & $^\circ C$ & $273.15$ K                 \\
+  \hline
+\end{tabular}
+
+
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
