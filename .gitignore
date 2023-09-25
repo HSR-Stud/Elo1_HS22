@@ -42,6 +42,7 @@ _ReSharper*/
 
 ## Intermediate documents:
 *.dvi
+*.xdv
 *-converted-to.*
 # these rules might exclude image files for figures etc.
  *.ps
@@ -65,7 +66,7 @@ _ReSharper*/
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
-*.xdv
+
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
